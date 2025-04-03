@@ -1,30 +1,52 @@
-Hello, Sabari.
-The following are my observations regarding Narration adjustments.
-I followed the steps below to log sql queries in the Hibernate log file.
-Step 1: Inject the extension file into batch domain IT4.
-Step 2: Clean and build using Batch Server 2.
-Step 3: Start the batch server.
-Step 4: Complete the transactions for logging the class files.
-Step 4: In the EM console, set the extension file log to trance 32 and the hibernate handler to trace 32.
-Step 5: Completed the transaction in the UI, then extracted the log from ofss.log for the class.
-All of the logs were found to be at a fine level.
-Step 6: Navigated to the Hibernate log route; no log was discovered for Queries.
 
-Here’s the corrected version in good English:
+Loan Repayment Alert System - Client Presentation
 
-Step 1:
+Slide 1: Title Slide
+Title: Loan Repayment Alert System
+Subtitle: Approach & AI Integration
+Presented by: [Your Name]
+Date: [Date]
 
-The process in CZ_MDM_OBP_UPD_ACCT_DTL_W will take records of closed or purged accounts, fetch the instruction, and insert them into CZ_MW_AC_AUTO_DEBIT_INSTR_DLT.
+Slide 2: Objective
+Automate alerts for loan repayment to improve compliance.
+Notify users before and after missed payments.
+Track repayment trends and analyze post-due payments.
+Slide 3: Key Features
+Pre-Due Alerts: Notify borrowers 1–2 days before the due date if auto-debit is not set.
+Missed Auto-Debit Alerts: Daily alerts for missed payments until a threshold is reached.
+AI-Driven Insights: Predict late payments & personalize notifications.
+Post-Due Payment Analysis: Track and analyze late payments as a percentage of total repayments.
+Slide 4: AI-Powered Enhancements
+Predictive Analytics: Identify borrowers likely to miss payments.
+Smart Notifications: AI optimizes timing and messaging of alerts.
+Risk Categorization: AI segments borrowers based on repayment patterns.
+Automated Decision-Making: AI suggests actions for chronic defaulters.
+Slide 5: Workflow Diagram
+Loan Data → Check Auto-Debit → Send Pre-Due Alerts
+Missed Auto-Debit → AI Optimized Alerts (Until Threshold)
+Payment Tracking → Late Payment Analysis
+AI Model → Predict & Adjust Alert Strategy
+Slide 6: Technology Stack
+AI/ML: Python (TensorFlow, Scikit-Learn)
+Backend: Java, Spring Boot (Scheduler, AI Integration)
+Frontend: Angular (Admin Dashboard, Reports)
+Database: PostgreSQL/MySQL (Loan & Payment Data), MongoDB (Unstructured Data)
+Messaging: Twilio, AWS SNS, Firebase for notifications
+Cloud: AWS/GCP for AI model deployment
+Slide 7: Demo Plan
+Walk through the AI-powered alert triggers.
+Show an example of notifications based on borrower behavior.
+Showcase an admin dashboard with late payment analytics.
+Slide 8: Expected Benefits
+✅ Improved repayment compliance
+✅ Reduced loan defaults
+✅ Better customer engagement
+✅ Data-driven insights for collection strategies
 
-Note:
-We need to maintain some form of identification for records that have been cancelled or reassigned. Currently, we use the TXN_REF_NO column in CZ_MW_AC_AUTO_DEBIT_INSTR_DLT. If the TXN_REF_NO column is not present, we need to add an additional column in the CZ_MW_AC_AUTO_DEBIT_INSTR_DLT_DRV table and insert the reason for those records.
+Slide 9: Next Steps
+Fine-tune AI model with historical repayment data.
+Optimize notification rules & escalation mechanisms.
+Integrate chatbot assistance for borrowers.
+Expand AI features for fraud detection & proactive risk management.
+Would you like this converted into a PowerPoint file for direct download?
 
-Step 2:
-
-Those records will follow the autodebit deletion process and, after deletion, will be stored in the outbound logs table CZ_OUTBOUND_NOTICES_D.
-
-Step 3:
-
-The cancellation letter records from the outbound logs table, with eventid: ACH_Cancellation, are loaded into CZ_ACH_CHANGE_NOTICES_D. The cancellation reason is not set, causing the query to fail, and the reason will be inserted as follows:
-
-To resolve this, compare the account number with CZ_MW_AC. If it matches, insert the cancellation reason as R02 in CZ_ACH_CHANGE_NOTICES_D, which indicates the account is closed.
